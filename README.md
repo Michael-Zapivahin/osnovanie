@@ -1,0 +1,2 @@
+# osnovanie
+osnovanie
