@@ -1,3 +1,5 @@
+import  os
+
 
 def input_operation_number():
     valid_choices = ['1', '2', '3', '4', '5', '0']
@@ -27,28 +29,34 @@ def read_file():
 
 
 def calc(choice: int):
+    operation_text = ""
     if 1 <= choice <= 4:
         num_1 = get_number("Введите первое число: ")
         num_2 = get_number("Введите второе число: ")
     if choice == 1:
         result = num_1 + num_2
-        print(f"Результат: {num_1} + {num_2} = {result}")
+        operation_text = f"Результат: {num_1} + {num_2} = {result}"
     elif choice == 2:
         result = num_1 - num_2
-        print(f"Результат: {num_1} - {num_2} = {result}")
+        operation_text = f"Результат: {num_1} - {num_2} = {result}"
     elif choice == 3:
         result = num_1 * num_2
-        print(f"Результат: {num_1} * {num_2} = {result}")
+        operation_text = f"Результат: {num_1} * {num_2} = {result}"
     elif choice == 4:
         if num_2 == 0:
             print("Ошибка: деление на ноль")
         else:
             result = num_1 / num_2
-            print(f"Результат: {num_1} / {num_2} = {result:.2f}")
+            operation_text = f"Результат: {num_1} / {num_2} = {result:.2f}"
     elif choice == 5:
         read_file()
     else:
-        print("Неверный выбор операции.")
+        operation_text = "Неверный выбор операции."
+
+    print(operation_text)
+
+    with open('logs.txt', 'a', encoding='utf-8') as file:
+        file.write(f'Операция: {operation_text}.\n')
 
 
 def main():
